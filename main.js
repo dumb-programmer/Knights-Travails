@@ -1,12 +1,17 @@
 const getKinghtPositions = (currentPos) => {
-    const transformArray = [[-2, -1], [-2, 1], [-1, 2], [1, 2], [2, 1], [2, -1], [1, -2], [-1, -2]];
-    const res = [];
-    for (const item of transformArray) {
-        const [x, y] = item
+    const offsets = [
+        [-2, -1], [-1, -2],
+        [1, -2], [2, -1],
+        [-2, 1], [-1, 2],
+        [1, 2], [2, 1]
+    ]
+    const moves = [];
+    for (const offset of offsets) {
+        const [x, y] = offset;
         const pos = [currentPos[0] + x, currentPos[1] + y]
-        if (pos[0] >= 0 && pos[0] < 8 && pos[1] >= 0 && pos[1] < 8) {
-            res.push(pos);
+        if (pos[0] > -1 && pos[0] < 8 && pos[1] > -1 && pos[1] < 8) {
+            moves.push(pos);
         }
     }
-    return res;
+    return moves;
 }
